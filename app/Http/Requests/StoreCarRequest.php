@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,6 +28,8 @@ class StoreCarRequest extends FormRequest
             'car_year' => ['required', 'integer', 'min:1886', 'max:' . (date('Y') + 1)],
             'car_price' => ['required', 'numeric', 'min:0'],
             'car_status' => ['boolean'],
+            'category_id' => ['required', 'integer', Rule::exists('categories', 'id')],
+            'barcode' => ['required', 'string'],
         ];
     }
 }

@@ -14,7 +14,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::with('category')->paginate(15);
         return response()->json($cars);
     }
 
@@ -32,6 +32,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
+        $car->load('category');
         return response()->json($car);
     }
 

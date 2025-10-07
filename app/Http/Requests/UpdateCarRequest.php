@@ -28,6 +28,8 @@ class UpdateCarRequest extends FormRequest
             'car_year' => ['sometimes', 'required', 'integer', 'min:1886', 'max:' . (date('Y') + 1)],
             'car_price' => ['sometimes', 'required', 'numeric', 'min:0'],
             'car_status' => ['sometimes', 'boolean'],
+            'category_id' => ['sometimes', 'required', 'integer', Rule::exists('categories', 'id')],
+            'barcode' => ['sometimes', 'required', 'string'],
         ];
     }
 }
