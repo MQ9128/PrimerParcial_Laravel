@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::table('cars', function (Blueprint $table) {
             // añadir columna barcode (string) sin valor por defecto
-            $table->string('barcode')->after('car_status');
+            $table->string('barcode')->nullable()->after('car_status');
 
             $table->foreignId('category_id')
-                  ->after('barcode')
                   ->constrained('categories')
                   ->onDelete('cascade');
         });
